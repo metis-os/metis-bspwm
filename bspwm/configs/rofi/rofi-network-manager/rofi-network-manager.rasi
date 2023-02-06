@@ -1,0 +1,82 @@
+
+configuration {
+  sidebar-mode: true;
+  font: "JetBrainsMono Nerd Font 12";
+  dmenu { 
+    display-name: "wifi-menu";
+  }
+
+}
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+  background-color: @active-background;
+  text-color: @active-foreground;
+}
+
+window {
+  transparency: "real";
+  border-radius: 8px;
+  location: center;
+  fullscreen: false;
+  height: calc(10% max 500);
+}
+
+mainbox {
+  children: [inputbar,listview];
+  padding: 10px;
+}
+
+inputbar {
+  background-color: @active-background;
+  spacing: 10;
+  children: [prompt,entry];
+}
+
+entry {
+  background-color: inherit;
+  padding: 12px 3px;
+  text-color: @active-foreground;
+  border-radius: 0px 0px 3px 0px;
+  border-color: @border-color;
+}
+
+prompt {
+  background-color: @border-color;
+  text-color: @active-background;
+  border-radius: 12px;
+  padding: 10px;
+
+}
+
+listview {
+  padding: 10px;
+  background-color: @active-background;
+}
+
+element {
+  children: [ element-text];
+  background-color: @active-background;
+  padding: 0px;
+}
+
+
+element-text {
+  padding: 10px 0;
+  background-color: @active-background;
+  text-color: @active-foreground;
+}
+
+element-text selected {
+  text-color: @border-color;
+  font: "JetBrainsMono Nerd Font 20";
+  background-color: @active-background;
+}
+
+
+

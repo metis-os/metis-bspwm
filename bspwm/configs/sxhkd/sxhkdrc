@@ -1,0 +1,130 @@
+# Launch Help Menu
+super + s 
+ ~/.config/bspwm/configs/rofi/helpmenu/helpmenu
+
+# Launch Rofi
+super + d 
+	rofi -show drun  -theme ~/.config/bspwm/configs/rofi/config.rasi
+
+# Launch tmux
+ctrl + t
+	st -e {tmux}
+# Launch [ browser, pactl, kitty, thunar]
+super + {w,v,Return,e}
+	{qutebrowser -C ~/.config/bspwm/configs/qutebrowser/config.py,pavucontrol, st,thunar }
+# Launch Network Manager
+super + n 
+  ~/.config/bspwm/configs/rofi/rofi-network-manager/rofi-network-manager.sh
+
+# Toogle Bar 
+super + b
+  ~/.config/bspwm/configs/polybar/launch.sh &
+
+# Change wallpaper
+super + shift + r
+  wal -n -i ~/.config/bspwm/metis-wallpapers/collections/ && feh --bg-fill "$(< "${HOME}/.cache/wal/wal")"
+# Take a screenshot with selection
+super + Print
+	import ~/Pictures/$(date +%Y-%m-%d-%H:%M:%S).png
+# Fullscreen screenshot
+Print 
+  import -window root ~/Pictures/$(date +%Y-%m-%d-%H:%M:%S).png 
+# Brighness Up
+XF86MonBrightnessUp
+	brightnessctl set +1%
+# Brightness Down
+XF86MonBrightnessDown
+	brightnessctl set 1%-	
+
+# Volume Up
+XF86AudioRaiseVolume
+	pactl set-sink-volume 0 +1%	
+# Volume Down
+XF86AudioLowerVolume
+	pactl set-sink-volume 0 -1%
+# Volume Mute
+XF86AudioMute
+	amixer set Master toggle
+	
+# Lockscreen
+super + l
+    i3lock-fancy
+
+# Reload Keybindings
+super + Escape
+	pkill -USR1 -x sxhkd && sxhkd &
+
+# Quit/Restart bspwm
+ctrl + alt + {q,r}
+	bspc {quit,wm -r}
+
+# Close App
+super + q
+	bspc node -c
+
+# kill
+ctrl + alt + Escape
+    xkill
+
+# Split horizontal, vertical or cancel
+super + {h,v,q}
+	bspc node -p {east,south,cancel}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Toggle beetwen floating & tiled
+super + space
+    bspc node -t "~"{floating,tiled}
+
+# Toogle Full screen 
+super + f
+    bspc node -t fullscreen
+
+# Pseudo Tiled & tiled mode
+super + {p,t}
+    bspc node -t {pseudo_tiled,tiled}
+
+# Set the node flags - marked , locked, sticky, private
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+# Send the window to another edge of the screen
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+
+# Switch workspace
+ctrl + alt + {Left,Right}
+	bspc desktop -f {prev.local,next.local}
+
+# Switch to last opened workspace
+super + {Tab,grave}
+	bspc {node,desktop} -f next
+
+# Switch to next opened workspace
+super + shift + {Tab,grave}
+  bspc {node,desktop} -f last
+
+# Send focused window to another workspace
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '^{1-8}'
+
+# Expanding windows
+super + control + {Left,Right,Up,Down}
+	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+	
+# Shrinking windows
+super + alt + {Left,Right,Up,Down}
+	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+	
+# Move floating windows
+alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Launch Powermenu
+alt + F4
+	$HOME/.config/bspwm/configs/rofi/powermenu/powermenu.sh
+
+

@@ -1,0 +1,56 @@
+configuration {
+  font: "Hack Nerd Font 12";
+  dmenu { 
+    display-name: "Key Bindings";
+  }
+}
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+* {
+
+    width: 1000;
+    height: 600;
+    background-color: @active-background;
+    foreground-color: @active-foreground;
+}
+
+
+
+
+window {
+  background-color: @active-background;
+  padding: 80px;
+  fullscreen: true;
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+inputbar {
+  children: [prompt];
+}
+
+prompt {
+  padding: 6px;
+  font: "Cantarell 12";
+  text-color: @active-background;
+  background-color: @border-color;
+  border-radius: 10px;
+}
+
+listview {
+  lines: 8;
+}
+
+element {
+  children: [element-text];
+}
+
+element-text {
+  padding: 5px;
+  text-color: @normal-foreground;
+}
+
+
